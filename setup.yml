@@ -9,15 +9,21 @@
     - name: "install common dependencies"
       yum: name=git
       become: yes
-
-- hosts: webui
-  tasks:
     - name: "install python dependencies"
       pip: name={{item}}
       with_items:
          - Flask
          - boto3
       become: yes
+
+- hosts: webui
+  tasks:
+#    - name: "install python dependencies"
+#      pip: name={{item}}
+#      with_items:
+#         - Flask
+#         - boto3
+#      become: yes
     - name: "synchronize repository"
       git:
         repo: https://github.com/pozdj/upload.git
